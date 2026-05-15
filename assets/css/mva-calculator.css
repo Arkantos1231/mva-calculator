@@ -1,0 +1,787 @@
+/* ==========================================================================
+   MVA Settlement Calculator — Styles
+   Light theme: bg #f8f9fc, card #ffffff, header #043144, accent #8D1C34
+   All properties use !important to prevent Elementor overrides.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+#mva-calculator-root {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: #1e293b !important;
+  background: #fff !important;
+  min-height: 500px !important;
+  padding: 0 !important;
+  max-width: 780px !important;
+  margin-inline: auto !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Loading */
+.mva-loading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 300px !important;
+}
+
+.mva-spinner {
+  width: 36px !important;
+  height: 36px !important;
+  border: 3px solid #e2e8f0 !important;
+  border-top-color: #8D1C34 !important;
+  border-radius: 50% !important;
+  animation: mva-spin 0.8s linear infinite !important;
+}
+
+@keyframes mva-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Header */
+.mva-header {
+  background: #043144 !important;
+  border-bottom: 1px solid rgba(141, 28, 52, 0.3) !important;
+  padding: 22px 28px !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.mva-header-inner {
+  max-width: 780px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+.mva-header-icon {
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  background: #8D1C34 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+.mva-header-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+}
+
+.mva-header-sub {
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-top: 2px !important;
+}
+
+.mva-header-disclaimer {
+  margin-left: auto !important;
+  text-align: right !important;
+  font-size: 11px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  flex-shrink: 0 !important;
+}
+
+.mva-header-disclaimer strong {
+  display: block !important;
+  color: #f87171 !important;
+  font-size: 10px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+/* Main body */
+.mva-body {
+  margin: 0 auto !important;
+  padding-top: 20px !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+/* Step Indicators */
+.mva-steps-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-bottom: 28px !important;
+}
+
+.mva-steps-arrow {
+  width: 30px !important;
+  height: 54px !important;
+  flex-shrink: 0 !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #ffffff !important;
+  color: #64748b !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  transition: all 0.15s !important;
+  padding: 0 !important;
+}
+
+.mva-steps-arrow:hover:not(:disabled) {
+  border-color: #8D1C34 !important;
+  color: #8D1C34 !important;
+  background: rgba(141, 28, 52, 0.08) !important;
+}
+
+.mva-steps-arrow:disabled {
+  opacity: 0.2 !important;
+  cursor: not-allowed !important;
+}
+
+.mva-steps {
+  flex: 1 !important;
+  display: flex !important;
+  gap: 6px !important;
+  overflow: hidden !important;
+}
+
+@keyframes mva-slide-in-left {
+  from {
+    transform: translateX(28px);
+    opacity: 0.3;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mva-slide-in-right {
+  from {
+    transform: translateX(-28px);
+    opacity: 0.3;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.mva-steps-anim-left {
+  animation: mva-slide-in-left 0.22s ease-out !important;
+}
+
+.mva-steps-anim-right {
+  animation: mva-slide-in-right 0.22s ease-out !important;
+}
+
+.mva-step-btn {
+  flex: 1 !important;
+  padding: 9px 4px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #ffffff !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 3px !important;
+  transition: all 0.15s !important;
+  overflow: hidden !important;
+}
+
+.mva-step-btn.active {
+  border-color: #8D1C34 !important;
+  background: rgba(141, 28, 52, 0.08) !important;
+}
+
+.mva-step-btn.done {
+  border-color: rgba(141, 28, 52, 0.3) !important;
+  background: rgba(141, 28, 52, 0.04) !important;
+}
+
+.mva-step-icon {
+  font-size: 17px !important;
+}
+
+.mva-step-label {
+  font-size: 10px !important;
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+  padding: 0 2px !important;
+}
+
+.mva-step-btn.active .mva-step-label {
+  color: #8D1C34 !important;
+  font-weight: 700 !important;
+}
+
+.mva-step-btn.done .mva-step-label {
+  color: #64748b !important;
+}
+
+/* Card */
+.mva-card {
+  background: #ffffff !important;
+  padding: 30px 32px !important;
+  margin-bottom: 20px !important;
+}
+
+/* Progress bar inside card */
+.mva-progress-bar-wrap {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 26px !important;
+  gap: 12px !important;
+}
+
+.mva-progress-label {
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  white-space: nowrap !important;
+}
+
+.mva-progress-track {
+  flex: 1 !important;
+  height: 4px !important;
+  background: #e2e8f0 !important;
+  border-radius: 2px !important;
+  overflow: hidden !important;
+}
+
+.mva-progress-fill {
+  height: 100% !important;
+  background: #8D1C34 !important;
+  border-radius: 2px !important;
+  transition: width 0.3s ease !important;
+}
+
+.mva-progress-pct {
+  font-size: 11px !important;
+  color: #8D1C34 !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+}
+
+/* Step headings */
+.mva-step-title {
+  margin: 0 0 5px 0 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 21px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.mva-step-desc {
+  margin: 0 0 22px 0 !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  line-height: 1.5 !important;
+}
+
+/* Form elements */
+.mva-field {
+  margin-bottom: 16px !important;
+}
+
+.mva-label {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  margin-bottom: 6px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.mva-input,
+.mva-textarea,
+.mva-select {
+  width: 100% !important;
+  padding: 11px 13px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  color: #1e293b !important;
+  font-size: 14px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  outline: none !important;
+  transition: border-color 0.2s !important;
+}
+
+.mva-input:focus,
+.mva-textarea:focus,
+.mva-select:focus {
+  border-color: #8D1C34 !important;
+}
+
+.mva-textarea {
+  resize: vertical !important;
+  min-height: 80px !important;
+}
+
+.mva-select {
+  cursor: pointer !important;
+}
+
+.mva-select option {
+  background: #ffffff !important;
+}
+
+/* Radio / button group */
+.mva-radio-group {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.mva-radio-btn {
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 500 !important;
+  transition: all 0.15s !important;
+}
+
+.mva-radio-btn.selected {
+  border-color: #8D1C34 !important;
+  background: rgba(141, 28, 52, 0.1) !important;
+  color: #8D1C34 !important;
+  font-weight: 700 !important;
+}
+
+/* Tort info badge */
+.mva-tort-badge {
+  padding: 11px 14px !important;
+  background: rgba(141, 28, 52, 0.06) !important;
+  border: 1px solid rgba(141, 28, 52, 0.2) !important;
+  border-radius: 8px !important;
+  margin-bottom: 14px !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  line-height: 1.5 !important;
+}
+
+/* Nav buttons */
+.mva-nav {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-top: 28px !important;
+}
+
+.mva-btn-back {
+  padding: 11px 26px !important;
+  border-radius: 10px !important;
+  border: 1px solid #cbd5e1 !important;
+  background: transparent !important;
+  color: #64748b !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  transition: all 0.15s !important;
+}
+
+.mva-btn-back:hover {
+  border-color: #94a3b8 !important;
+  color: #1e293b !important;
+}
+
+.mva-btn-back:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+.mva-btn-next {
+  padding: 11px 28px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  background: #8D1C34 !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  transition: opacity 0.15s, box-shadow 0.15s !important;
+  box-shadow: 0 4px 14px rgba(141, 28, 52, 0.35) !important;
+}
+
+.mva-btn-next:hover {
+  opacity: 0.88 !important;
+  box-shadow: 0 6px 20px rgba(141, 28, 52, 0.5) !important;
+}
+
+/* Lead gate */
+.mva-lead-form input {
+  width: 100% !important;
+  padding: 11px 13px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  color: #1e293b !important;
+  font-size: 14px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  outline: none !important;
+  margin-bottom: 14px !important;
+  transition: border-color 0.2s !important;
+}
+
+.mva-lead-form input:focus {
+  border-color: #8D1C34 !important;
+}
+
+.mva-consent-text {
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+  margin-bottom: 22px !important;
+  line-height: 1.6 !important;
+}
+
+/* Range display */
+.mva-range-display {
+  text-align: center !important;
+  padding: 24px 16px !important;
+  margin-bottom: 26px !important;
+  background: rgba(141, 28, 52, 0.05) !important;
+  border: 1px solid rgba(141, 28, 52, 0.2) !important;
+  border-radius: 12px !important;
+}
+
+.mva-range-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 10px !important;
+}
+
+.mva-range-value {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #8D1C34 !important;
+  line-height: 1.2 !important;
+}
+
+.mva-range-to {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: #94a3b8 !important;
+}
+
+.mva-range-loading {
+  text-align: center !important;
+  padding: 32px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+.mva-range-loading-text {
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Results */
+.mva-result-header {
+  margin-bottom: 24px !important;
+}
+
+.mva-result-header h2 {
+  margin: 0 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 24px !important;
+  color: #1e293b !important;
+}
+
+.mva-result-state {
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+  margin-top: 3px !important;
+}
+
+.mva-edit-btn {
+  padding: 7px 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: transparent !important;
+  color: #64748b !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.mva-range-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 14px !important;
+  margin-bottom: 26px !important;
+}
+
+.mva-range-card {
+  padding: 18px !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #f8f9fc !important;
+  text-align: center !important;
+}
+
+.mva-range-card.highlight {
+  border-color: rgba(141, 28, 52, 0.4) !important;
+  background: rgba(141, 28, 52, 0.06) !important;
+}
+
+.mva-range-card-label {
+  font-size: 10px !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+
+.mva-range-card-value {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+}
+
+.mva-range-card-sub {
+  font-size: 10px !important;
+  color: #94a3b8 !important;
+  margin-top: 5px !important;
+}
+
+/* Breakdown table */
+.mva-breakdown {
+  border-top: 1px solid #e2e8f0 !important;
+  padding-top: 20px !important;
+  margin-top: 4px !important;
+}
+
+.mva-breakdown-title {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 14px !important;
+}
+
+.mva-breakdown-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 9px 0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  font-size: 13px !important;
+}
+
+.mva-breakdown-row span:first-child {
+  color: #64748b !important;
+}
+
+.mva-breakdown-row span:last-child {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+.mva-breakdown-row.total span {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.mva-breakdown-row.fault span:first-child {
+  color: #ef4444 !important;
+}
+
+.mva-breakdown-row.fault span:last-child {
+  color: #ef4444 !important;
+}
+
+/* Barred from recovery */
+.mva-barred {
+  padding: 22px !important;
+  background: rgba(239, 68, 68, 0.06) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  border-radius: 12px !important;
+  text-align: center !important;
+}
+
+.mva-barred-icon {
+  font-size: 28px !important;
+  margin-bottom: 8px !important;
+}
+
+.mva-barred-title {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: #ef4444 !important;
+  margin-bottom: 8px !important;
+}
+
+.mva-barred-desc {
+  font-size: 13px !important;
+  color: #64748b !important;
+  line-height: 1.6 !important;
+}
+
+/* AI Analysis card */
+.mva-ai-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(141, 28, 52, 0.2) !important;
+  border-radius: 16px !important;
+  padding: 22px 28px !important;
+  margin-bottom: 20px !important;
+}
+
+.mva-ai-title {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #8D1C34 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 14px !important;
+}
+
+.mva-ai-loading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: #94a3b8 !important;
+  font-size: 13px !important;
+}
+
+.mva-ai-text {
+  font-size: 14px !important;
+  color: #475569 !important;
+  line-height: 1.75 !important;
+  white-space: pre-wrap !important;
+}
+
+.mva-ai-error {
+  font-size: 12px !important;
+  color: #ef4444 !important;
+}
+
+/* Flags card */
+.mva-flags-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  padding: 22px 28px !important;
+}
+
+.mva-flags-title {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 14px !important;
+}
+
+.mva-flag-item {
+  padding: 9px 12px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  margin-bottom: 7px !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+}
+
+.mva-disclaimer-box {
+  margin-top: 14px !important;
+  padding: 13px 15px !important;
+  background: rgba(141, 28, 52, 0.04) !important;
+  border: 1px solid rgba(141, 28, 52, 0.12) !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+  color: #94a3b8 !important;
+  line-height: 1.65 !important;
+}
+
+.mva-disclaimer-box strong {
+  color: #8D1C34 !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .mva-card {
+    padding: 20px 16px !important;
+  }
+
+  .mva-range-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mva-header {
+    padding: 16px !important;
+  }
+
+  .mva-header-disclaimer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mva-step-icon {
+    font-size: 20px !important;
+  }
+
+  .mva-step-label {
+    font-size: 11px !important;
+  }
+
+  .mva-step-btn {
+    padding: 10px 4px !important;
+  }
+
+  .mva-steps-arrow {
+    height: 58px !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .mva-step-icon {
+    font-size: 22px !important;
+  }
+
+  .mva-step-label {
+    font-size: 12px !important;
+  }
+
+  .mva-step-btn {
+    padding: 10px 6px !important;
+  }
+}
