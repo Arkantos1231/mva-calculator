@@ -253,6 +253,35 @@
   var T = TRANSLATIONS[lang] || TRANSLATIONS['en'];
   var STEPS = T.steps;
 
+  /* ========== GA4 TRACKING ========== */
+
+  var calculatorInteracted = false;
+
+  function trackCalculatorStart(stateValue) {
+    if (!calculatorInteracted) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'calculator_start', {
+          'page_title': document.title,
+          'page_location': window.location.href,
+          'state_calculator': stateValue || ''
+        });
+      }
+      calculatorInteracted = true;
+    }
+  }
+
+  document.addEventListener('focus', function (e) {
+    if (e.target.matches('.mva-input, .mva-select, .mva-radio-btn')) {
+      trackCalculatorStart(state.data.state);
+    }
+  }, true);
+
+  document.addEventListener('change', function (e) {
+    if (e.target.matches('.mva-input, .mva-select')) {
+      trackCalculatorStart(state.data.state);
+    }
+  });
+
   /* ========== STATE ========== */
 
   var state = {
@@ -597,6 +626,15 @@
     state.showLead    = false;
     state.showResults = true;
     state.aiLoading   = true;
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'calculator_complete', {
+        'page_title': document.title,
+        'page_location': window.location.href,
+        'state_calculator': state.data.state || ''
+      });
+    }
+
     render();
 
     var WP_AJAX = (typeof window !== 'undefined' && window.mvaAjax) ? window.mvaAjax : null;
