@@ -498,7 +498,7 @@ export default function MVACalculator() {
               <div style={{ fontSize: 12, color: "#c9a84c", fontWeight: 700 }}>100%</div>
             </div>
             <h2 style={sh}>Almost There!</h2>
-            <p style={sp}>Enter your contact info to see your personalized settlement estimate and AI case analysis.</p>
+            <p style={sp}>Enter your contact info to receive your personalized settlement estimate.</p>
             <form onSubmit={handleLeadSubmit}>
               {[['name','Full Name','text','e.g. Jane Smith'],['email','Email Address','email','e.g. jane@email.com'],['phone','Phone Number','tel','e.g. (555) 555-0100']].map(([field, label, type, ph]) => (
                 <div key={field} style={{ marginBottom: 16 }}>
