@@ -30,6 +30,14 @@ class MVA_AI_Engine
         }
 
         $system_prompt = get_option('mva_system_prompt', self::get_default_prompt());
+        if (trim((string) $system_prompt) === '') {
+            $system_prompt = self::get_default_prompt();
+        }
+
+        // Spanish sites: answer in Spanish but keep the parseable structure
+        if (get_option('mva_language', 'en') === 'es') {
+            $system_prompt .= "\n\nLANGUAGE: Write all explanatory text in Spanish (neutral Latin American Spanish). Keep the two section headings exactly as shown in OUTPUT FORMAT (in English) and write the range line exactly as \"$[amount] to $[amount]\".";
+        }
         $case_summary  = $this->build_case_summary($form_data, $math);
 
         $body = array(
@@ -77,14 +85,14 @@ class MVA_AI_Engine
         $content = $decoded['choices'][0]['message']['content'];
 
         // Parse "$X to $Y" from the response
-        if (preg_match('/\$([0-9,]+)\s+to\s+\$([0-9,]+)/i', $content, $matches)) {
+        if (preg_match('/\$([0-9,]+)\s*(?:\s(?:to|a|hasta)\s|[-–—])\s*\$([0-9,]+)/iu', $content, $matches)) {
             $low  = (int) str_replace(',', '', $matches[1]);
             $high = (int) str_replace(',', '', $matches[2]);
             $mid  = (int) (round(($low + $high) / 2 / 500) * 500);
 
             // Parse explanation from the "### 💡 Why This Range" section
             $explanation = '';
-            if (preg_match('/###\s*💡\s*Why This Range\s*\n+([\s\S]+)/i', $content, $expMatches)) {
+            if (preg_match('/###\s*💡\s*(?:Why This Range|Por qu[ée] este rango)\s*\n+([\s\S]+)/iu', $content, $expMatches)) {
                 $explanation = trim($expMatches[1]);
             }
 
