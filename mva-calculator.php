@@ -3,7 +3,7 @@
  * Plugin Name: MVA Settlement Calculator
  * Plugin URI: https://pinderplotkin.com
  * Description: Multi-step Motor Vehicle Accident Settlement Calculator with AI-powered case analysis and GHL lead integration.
- * Version: 1.5.15.4
+ * Version: 1.5.15.5
  * Author: Julian Obando and Pinder Plotkin
  * Author URI: https://pinderplotkin.com
  * License: GPL v2 or later
@@ -16,7 +16,9 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin constants  (MVA_ prefix only — no conflict with WCC plugin)
-define('MVA_VERSION',         '1.5.15.4');
+// Version comes from the plugin header above, so assets always cache-bust correctly
+$mva_header = get_file_data(__FILE__, array('Version' => 'Version'));
+define('MVA_VERSION', $mva_header['Version']);
 define('MVA_PLUGIN_DIR',      plugin_dir_path(__FILE__));
 define('MVA_PLUGIN_URL',      plugin_dir_url(__FILE__));
 define('MVA_PLUGIN_BASENAME', plugin_basename(__FILE__));
