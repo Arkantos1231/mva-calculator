@@ -7,7 +7,7 @@
  *
  * Setup:
  *   1. npm install
- *   2. Configura tus credenciales FTP abajo
+ *   2. Copia .env.example a .env y pon tus credenciales FTP
  *   3. Elige el modo
  */
 
@@ -16,20 +16,35 @@ const chokidar = require('chokidar');
 const path   = require('path');
 const fs     = require('fs');
 
+// Lee las credenciales de .env (no se sube a git ni al servidor)
+function loadEnv(file) {
+  if (!fs.existsSync(file)) {
+    console.error('✗ Falta el archivo .env. Copia .env.example a .env y pon tus credenciales.');
+    process.exit(1);
+  }
+  for (const line of fs.readFileSync(file, 'utf8').split(/\r?\n/)) {
+    const m = line.match(/^\s*([A-Z_]+)\s*=\s*(.*?)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
+  }
+}
+loadEnv(path.join(__dirname, '.env'));
+for (const k of ['FTP_HOST', 'FTP_USER', 'FTP_PASSWORD', 'FTP_REMOTE_PATH']) {
+  if (!process.env[k]) { console.error(`✗ Falta ${k} en .env`); process.exit(1); }
+}
+
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 const CONFIG = {
   // FTP credentials
-  host:     'ftp.pinderplotkin.com',       // ← tu host FTP
-  user:     'julian@pinderplotkin.com',      // ← tu usuario FTP
-  password: '***REMOVED***',     // ← tu contraseña FTP
-  secure:   false,                 // true si usas FTPS
+  host:     process.env.FTP_HOST,
+  user:     process.env.FTP_USER,
+  password: process.env.FTP_PASSWORD,
+  secure:   process.env.FTP_SECURE === 'true', // true = FTPS (cifrado)
 
   // Ruta remota en el servidor donde vive el plugin
-  //remotePath: '/staging12.pinderplotkin.com/public_html/wp-content/plugins/mva-calculator',  
-  remotePath: '/pinderplotkin.com/public_html/wp-content/plugins/mva-calculator',
+  remotePath: process.env.FTP_REMOTE_PATH,
 
   // Archivos/carpetas a ignorar
-  ignore: ['node_modules', '.claude', 'ghl_debug.log', 'deploy.js', 'package.json', 'package-lock.json', '.git'],
+  ignore: ['.env', 'node_modules', '.claude', 'ghl_debug.log', 'deploy.js', 'package.json', 'package-lock.json', '.git'],
 };
 // ─────────────────────────────────────────────────────────────────────────────
 
